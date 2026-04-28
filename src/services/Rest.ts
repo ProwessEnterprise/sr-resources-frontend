@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
