@@ -19,6 +19,7 @@ import CTASection from "@/components/CTASection/CTASection";
 import { colors, fontFamily } from "@/theme/theme";
 import RichText from "@/components/RichText/RichText";
 import Link from "next/link";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace("/api", "") || "";
 
@@ -52,7 +53,7 @@ export default function MediaPressContent() {
     }
   }, [page]);
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   const hero = page.hero_section;
 

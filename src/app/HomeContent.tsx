@@ -12,6 +12,7 @@ import CustomerSection from "@/components/CustomerSection/CustomerSection";
 import BlogSection from "@/components/BlogSection/BlogSection";
 import FAQSection from "@/components/FAQSection/FAQSection";
 import CTAMapSection from "@/components/CTAMapSection/CTAMapSection";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace("/api", "") || "";
 
@@ -23,7 +24,7 @@ export default function HomeContent() {
     getHomePage().then((res) => setPage(res?.data));
   }, []);
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   const hero = page.hero_section;
 

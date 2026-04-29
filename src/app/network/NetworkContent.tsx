@@ -14,6 +14,7 @@ import CustomerSection from "@/components/CustomerSection/CustomerSection";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import CTASection from "@/components/CTASection/CTASection";
 import { colors, fontFamily } from "@/theme/theme";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace("/api", "") || "";
 
@@ -69,7 +70,7 @@ export default function NetworkContent() {
     getNetworkPage().then((res) => setPage(res?.data));
   }, []);
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   const hero = page.hero_section;
 

@@ -16,6 +16,7 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 import CTASection from "@/components/CTASection/CTASection";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { colors, fontFamily } from "@/theme/theme";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace("/api", "") || "";
 
@@ -118,7 +119,7 @@ export default function ProductsContent() {
     }
   };
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   return (
     <>

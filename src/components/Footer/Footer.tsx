@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Box, Container, Typography, Grid, Divider } from "@mui/material";
+import { Box, Container, Typography, Grid, Divider, Skeleton } from "@mui/material";
 import Link from "next/link";
 import { getFooter } from "@/services/PageService";
 import { Footer as FooterType } from "@/interfaces/Strapi";
@@ -39,7 +39,42 @@ export default function Footer() {
     getFooter().then((res) => setFooter(res?.data));
   }, []);
 
-  if (!footer) return null;
+  if (!footer) return (
+    <Box component="footer" sx={{ backgroundColor: colors.black, pt: 8, pb: 3 }}>
+      <Container maxWidth="xl">
+        <Grid container spacing={4}>
+          <Grid size={{ xs: 12, sm: 12, md: 3 }}>
+            <Skeleton variant="text" width="60%" height={32} sx={{ bgcolor: "grey.800", mb: 2 }} />
+            <Skeleton variant="text" width="90%" sx={{ bgcolor: "grey.800" }} />
+            <Skeleton variant="text" width="80%" sx={{ bgcolor: "grey.800" }} />
+          </Grid>
+          {[1, 2, 3].map((i) => (
+            <Grid key={i} size={{ xs: 12, sm: 6, md: 2 }}>
+              <Skeleton variant="text" width="50%" height={24} sx={{ bgcolor: "grey.800", mb: 2 }} />
+              {[1, 2, 3, 4].map((j) => (
+                <Skeleton key={j} variant="text" width="70%" sx={{ bgcolor: "grey.800", mb: 1 }} />
+              ))}
+            </Grid>
+          ))}
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+            <Skeleton variant="text" width="50%" height={24} sx={{ bgcolor: "grey.800", mb: 2 }} />
+            <Skeleton variant="text" width="90%" sx={{ bgcolor: "grey.800", mb: 1 }} />
+            <Skeleton variant="text" width="70%" sx={{ bgcolor: "grey.800", mb: 1 }} />
+            <Skeleton variant="text" width="60%" sx={{ bgcolor: "grey.800" }} />
+          </Grid>
+        </Grid>
+        <Divider sx={{ my: 4, borderColor: colors.grey }} />
+        <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 2 }}>
+          <Skeleton variant="text" width={200} sx={{ bgcolor: "grey.800" }} />
+          <Box sx={{ display: "flex", gap: 3 }}>
+            {[1, 2, 3].map((i) => (
+              <Skeleton key={i} variant="text" width={80} sx={{ bgcolor: "grey.800" }} />
+            ))}
+          </Box>
+        </Box>
+      </Container>
+    </Box>
+  );
 
   const fl = footer.footerLinks || {};
   const quickLinks = (fl.quickLinks || []) as FooterLink[];

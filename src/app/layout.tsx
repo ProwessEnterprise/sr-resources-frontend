@@ -31,8 +31,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const logoUrl = header?.logo_image?.url ? `${API_ROOT}${header.logo_image.url}` : undefined;
   return {
     metadataBase: SITE_URL ? new URL(SITE_URL) : undefined,
-    title: "SR Resources",
-    description: "SR Resources - Industrial Excellence",
+    title: { default: "SR Resources", template: "%s" },
+    description: "SR Resources - Leading petroleum and industrial products supplier with global operations in bulk liquid storage, manufacturing, and international trading.",
     icons: logoUrl ? { icon: logoUrl } : undefined,
     robots: { index: true, follow: true },
     alternates: SITE_URL ? { canonical: SITE_URL } : undefined,

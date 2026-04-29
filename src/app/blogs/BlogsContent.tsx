@@ -11,6 +11,7 @@ import { BlogPage, Blog } from "@/interfaces/Strapi";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import CTAMapSection from "@/components/CTAMapSection/CTAMapSection";
 import { colors, fontFamily } from "@/theme/theme";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace("/api", "") || "";
 
@@ -30,7 +31,7 @@ export default function BlogsContent() {
     getBlogs().then((res) => setBlogs(res?.data || []));
   }, []);
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   const hero = page.hero_section;
 

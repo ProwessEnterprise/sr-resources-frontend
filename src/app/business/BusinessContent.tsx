@@ -14,6 +14,7 @@ import BrandSection from "@/components/BrandSection/BrandSection";
 import FAQSection from "@/components/FAQSection/FAQSection";
 import CTASection from "@/components/CTASection/CTASection";
 import { colors, fontFamily } from "@/theme/theme";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace("/api", "") || "";
 
@@ -181,7 +182,7 @@ export default function BusinessContent() {
     }
   }, [page]);
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   const hero = page.hero_section;
 

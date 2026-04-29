@@ -13,6 +13,7 @@ import BrandSection from "@/components/BrandSection/BrandSection";
 import CTAMapSection from "@/components/CTAMapSection/CTAMapSection";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { colors, fontFamily } from "@/theme/theme";
+import PageLoader from "@/components/PageLoader/PageLoader";
 
 const visionIcons = [InsightsIcon, RocketLaunchIcon, PublicOutlinedIcon];
 
@@ -26,7 +27,7 @@ export default function AboutContent() {
     getAboutPage().then((res) => setPage(res?.data));
   }, []);
 
-  if (!page) return null;
+  if (!page) return <PageLoader />;
 
   const hero = page.herosection;
   const stats: { value: string; label: string }[] = page.chairman_metrics?.stats || [];
